@@ -1,0 +1,17 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+	"dev": "bun src/index.ts",
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "@repo/my-lib": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "5.9.2"
+  }
+}
