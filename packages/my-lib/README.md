@@ -16,6 +16,10 @@ package.json
   /* dev time, tells TypeScript where to find the type declarations */
   "exports": {
     ".": "./src/index.ts",
+	/**
+	 * Import `@repo/my-lib/button` → gets `src/button.ts`,
+	 * typically not needed as everything needs to be exported from index.ts
+	 */ 
     "./*": "./src/*.ts"
   },
   "scripts": {
