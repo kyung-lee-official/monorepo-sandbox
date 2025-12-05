@@ -30,8 +30,14 @@ package.json
     "access": "public"
   },
   "devDependencies": {
-	/* must be installed so that tsconfig.json can extends it */
-    "@repo/typescript-config": "*"
+	/**
+	 * must be installed so that tsconfig.json can extends it.
+	 * Turborepo + Bun → use "workspace:*" (recommended), but "*" also works
+	 * Turborepo + pnpm → use "workspace:*"
+	 * Turborepo + Yarn Berry → use "workspace:*"
+	 * Turborepo + npm → you have to use "*" (npm doesn’t understand workspace:)
+	 */
+    "@repo/typescript-config": "workspace:*"
   }
 }
 ```
