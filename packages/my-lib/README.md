@@ -1,21 +1,38 @@
 package.json
 
+| Filed           | Purpose                                                                                                                     | Used By                                                              | Use Time                          |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------- |
+| main            | The traditional, non-scoped entry point. Points to the package's CommonJS file.                                             | Node.js (older/default), Bundlers (fallback), TypeScript (fallback). | Runtime & Compile Time            |
+| module          | An unofficial, non-scoped entry point. Points to the package's ES Module file.                                              | Bundlers (Webpack, Rollup), TypeScript (legacy).                     | Compile Time                      |
+| types / typings | Points to the package's main TypeScript declaration file (.d.ts).                                                           | TypeScript, VSCode/IDE Language Service.                             | Dev Time & Compile Time           |
+| exports         | The modern, preferred way to define all entry points (main, subpath, CJS, ESM). It can include conditional paths for types. | Node.js (modern), Bundlers, TypeScript (v4.7+), VSCode/IDE.          | Runtime & Compile Time & Dev Time |
+| imports         | Defines private, internal aliases that only your package can use.                                                           | Node.js (modern).                                                    | Runtime                           |
+
+
 ```json
 {
   "name": "@repo/my-lib",
   "version": "0.0.0",
   "private": true,
   /**
-   * runtime, tells Node.js and bundlers where to find the entry point of the package 
-   * During development (before build), 
+   * The traditional, non-scoped entry point. Points to the package's CommonJS file,
+   * tells Node.js and bundlers where to find the entry point of the package,
    * it’s ignored because TypeScript/Vite/Turbo use the "exports" field instead.
    */
   "main": "./dist/index.js",
-  /* compile time, tells TypeScript where to find the type declarations */
+  /* compile time, single entry, old fallback for older TypeScript compiler where to find the type declarations */
   "types": "./dist/index.d.ts",
-  /* dev time, tells TypeScript where to find the type declarations */
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+	   /**
+	   * Conditional exports for modern Node.js and bundlers.
+	   * Tells them where to find the ESM version of the package.
+	   */
+	  "import": {
+		"types": "./dist/index.d.ts",
+		"default": "./dist/index.js"
+	  }
+	},										
 	/**
 	 * Import `@repo/my-lib/button` → gets `src/button.ts`,
 	 * typically not needed as everything needs to be exported from index.ts
