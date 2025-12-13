@@ -1,19 +1,19 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
+    "declaration": true, // Generate .d.ts files
+    "declarationMap": true, // Generate source maps for declarations (good for debugging)
+    "esModuleInterop": true, // Allows you to `import * as React from 'react'` in a CJS module
     "incremental": false,
     "isolatedModules": true,
     "lib": ["es2022", "DOM", "DOM.Iterable"],
-    "module": "NodeNext",
+    "module": "NodeNext", // Crucial for modern module resolution in Node/bundlers
     "moduleDetection": "force",
     "moduleResolution": "NodeNext",
     "noUncheckedIndexedAccess": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
-    "target": "ES2022"
+    "strict": true, // Best practice: enables all strict type checking options
+    "target": "ES2022" // Use a modern JS target for better compatibility and smaller output
   }
 }
