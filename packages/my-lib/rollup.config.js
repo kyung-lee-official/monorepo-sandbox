@@ -39,7 +39,14 @@ export default {
 		// 3. Convert CJS modules (if any) to ES modules to be included in the Rollup bundle
 		commonjs(),
 		// 4. Compile TypeScript to JavaScript (using the TS settings in tsconfig, but not emitting types)
-		typescript({ tsconfig: './tsconfig.json', sourceMap: true }),
+		typescript({
+			tsconfig: './tsconfig.json',
+			sourceMap: true,
+			compilerOptions: {
+				module: 'NodeNext',
+				moduleResolution: 'NodeNext'
+			}
+		}),
 		// ... add babel or terser for minification/optimization
 	],
 };

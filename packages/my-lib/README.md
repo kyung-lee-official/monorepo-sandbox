@@ -29,8 +29,8 @@ package.json
 			 * Tells them where to find the ESM version of the package.
 			 */
 			"types": "./dist/index.d.ts", // type declarations for ESM import
-			"import": "./dist/index.js", // ESM entry point
-			"require": "./dist/index.js", // CommonJS entry point
+			"import": "./dist/index.esm.js", // ESM entry point
+			"require": "./dist/index.cjs.js", // CommonJS entry point
 			"default": "./dist/index.js" // fallback for older bundlers
 		},
 		/**
