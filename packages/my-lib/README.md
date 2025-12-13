@@ -28,12 +28,10 @@ package.json
 			 * Conditional exports for modern Node.js and bundlers.
 			 * Tells them where to find the ESM version of the package.
 			 */
-			"import": {
-				"types": "./dist/index.d.ts", // type declarations for ESM import
-				"import": "./dist/index.js", // ESM entry point
-				"require": "./dist/index.js", // CommonJS entry point
-				"default": "./dist/index.js" // fallback for older bundlers
-			},
+			"types": "./dist/index.d.ts", // type declarations for ESM import
+			"import": "./dist/index.js", // ESM entry point
+			"require": "./dist/index.js", // CommonJS entry point
+			"default": "./dist/index.js" // fallback for older bundlers
 		},
 		/**
 		 * Import `@repo/my-lib/button` → gets `src/button.ts`,
